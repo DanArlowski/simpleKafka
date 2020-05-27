@@ -1,12 +1,17 @@
 from kafka import KafkaProducer
-from kafka.errors import KafkaError
 import time
+import os
 
-time.sleep(10)
-producer = KafkaProducer(bootstrap_servers=['kafka1:19092'])
+topic = os.getenv('TOPIC').strip()
+bootstrapServer=os.getenv('BOOTSTRAP').strip()
+bootstrapPort=os.getenv('PORT').strip()
+
+
+time.sleep(20)
+producer = KafkaProducer(bootstrap_servers=['{}:{}'.format(bootstrapServer, bootstrapPort)])
 
 
 for i in range(1000):
 	message="this is message number: "+str(i)
-	producer.send('my-topic',bytes(message, 'utf-8'))
+	producer.send(topic,bytes(message, 'utf-8'))
 	time.sleep(3)

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer
+  template:
+    metadata: 
+      labels: 
+        app: kafka-consumer
+    spec:
+      imagePullPolicy: Always
+      containers:
+      - image: quay.io/darlowsk/kafka-consumer:latest
+        name: kafka-consumer
+        resources: {}
+        env:
+          - name: PORT
+            value: "9092"
+          - name: BOOTSTRAP
+            value: "my-cluster-kafka-bootstrap"
+
+
+        
