@@ -3,7 +3,9 @@ WORKDIR /app
 ENV TOPIC="my-topic" \
 		GROUP="my-group" \
 		BOOTSTRAP="kafka1" \
-		PORT="19092"
+		PORT="19092" \
+		CA="" \
+		CERT=""
 RUN pip3 install kafka-python
-COPY consumer.py .
-ENTRYPOINT ["python3","consumer.py"]
+COPY . .
+ENTRYPOINT ["sh", "entrypoint.sh"]

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer
+  template:
+    metadata: 
+      labels: 
+        app: kafka-consumer
+    spec:
+      imagePullPolicy: Always
+      containers:
+      - image: quay.io/darlowsk/kafka-consumer:test1
+        name: kafka-consumer
+        resources: {}
+        env:
+          - name: PORT
+            value: "9093"
+          - name: BOOTSTRAP
+            value: "my-cluster-kafka-bootstrap"
+          - name: CA
+            valueFrom:
+              secretKeyRef:
+                name: my-cluster-cluster-ca-cert
+                key: ca.crt
+          - name: CERT
+            valueFrom:
+              secretKeyRef:
+                name: my-consumer
+                key: user.crt
+          - name: KEY
+            valueFrom:
+              secretKeyRef:
+                name: my-consumer
+                key: user.key
+
+        
