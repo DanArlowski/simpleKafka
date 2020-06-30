@@ -11,7 +11,7 @@ bootstrapPort=os.getenv('PORT').strip()
 cert="/tmp/user-cert.crt"
 ca="/tmp/ca.crt"
 key="/tmp/key.pem"
-#TODO: use consumer user to consume
+
 
 print (topic, group, bootstrapServer, bootstrapPort, flush=True)
 print("{}:{}".format(bootstrapServer, bootstrapPort), flush=True)

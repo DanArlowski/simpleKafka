@@ -8,7 +8,6 @@ bootstrapPort=os.getenv('PORT').strip()
 cert="/tmp/user-cert.crt"
 ca="/tmp/ca.crt"
 key="/tmp/key.pem"
-#TODO: use producer user for producing
 
 print ("values:", key,ca,cert, flush=True)
 print ("connecting to {}:{}".format(bootstrapServer,bootstrapPort))
